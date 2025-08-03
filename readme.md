@@ -46,6 +46,34 @@ docker run --name jenkins-blueocean --restart=on-failure --detach `
   --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean:2.332.3-1
 ```
 
+or
+
+create a docker-compose.yml file and run docker-compose up -d
+YAML file
+
+version: "3.8"
+
+services:
+jenkins-blueocean:
+image: myjenkins-blueocean:2.414.2
+container_name: jenkins-blueocean
+restart: on-failure
+networks: - jenkins
+environment:
+DOCKER_HOST: tcp://docker:2376
+DOCKER_CERT_PATH: /certs/client
+DOCKER_TLS_VERIFY: "1"
+volumes: - jenkins-data:/var/jenkins_home - jenkins-docker-certs:/certs/client:ro
+ports: - "8080:8080" - "50000:50000"
+
+networks:
+jenkins:
+external: true
+
+volumes:
+jenkins-data:
+jenkins-docker-certs:
+
 ## Get the Password
 
 ```

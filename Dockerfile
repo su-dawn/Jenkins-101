@@ -10,7 +10,6 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
 RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
 
-RUN jenkins-plugin-cli --plugins "json-path-api:2.9.0-148.v22a_7ffe323ce token-macro:477.vd4f0dc3cb_cf1 blueocean:1.25.3"
+RUN jenkins-plugin-cli --plugins "json-path-api:2.9.0-148.v22a_7ffe323ce token-macro:477.vd4f0dc3cb_cf1 blueocean:1.25.3 docker-workflow:1.28"
 
 
-RUN jenkins-plugin-cli --plugins "blueocean:1.25.3 docker-workflow:1.28"
